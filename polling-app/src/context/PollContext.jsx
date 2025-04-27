@@ -5,7 +5,7 @@ const PollContext = createContext();
 export const PollProvider = ({ children }) => {
   const [polls, setPolls] = useState([]);
 
-  const createPoll = (question, options) => {
+  const createPoll = (question, options, isMultiple) => {
     const newPoll = {
       id: Date.now(),
       question,
@@ -14,9 +14,10 @@ export const PollProvider = ({ children }) => {
         text: opt,
         votes: 0,
       })),
+      isMultiple, // <-- added!
     };
     setPolls(prev => [...prev, newPoll]);
-  };
+  }; 
 
   const vote = (pollId, optionId) => {
     setPolls(prev =>

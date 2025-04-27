@@ -5,6 +5,9 @@ function CreatePoll() {
   const { createPoll } = usePoll();
   const [question, setQuestion] = useState('');
   const [options, setOptions] = useState(['', '']);
+  const [isMultiple, setIsMultiple] = useState(false);
+  const [success, setSuccess] = useState(false);
+  
 
   const handleOptionChange = (index, value) => {
     const updatedOptions = [...options];
@@ -18,40 +21,70 @@ function CreatePoll() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPoll(question, options.filter((opt) => opt.trim() !== ''));
+    createPoll(question, options.filter(opt => opt.trim() !== ''), isMultiple);
     setQuestion('');
     setOptions(['', '']);
+    setIsMultiple(false);
+    setSuccess(true);
+  
+    setTimeout(() => {
+      setSuccess(false);
+    }, 3000); // Hide message after 3 seconds
   };
+  
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Poll Question"
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-        style={{ display: 'block', width: '100%', padding: '0.5rem', marginBottom: '1rem' }}
-        required
-      />
-      {options.map((option, idx) => (
+    <div className="form-container fade-in">
+      <h1>Create a New Poll</h1>
+      {success && (
+        <div className="success-message">
+        🎉 Poll Created Successfully!
+        </div>
+        )}  
+
+      <form onSubmit={handleSubmit} className="create-poll-form">
         <input
-          key={idx}
           type="text"
-          placeholder={`Option ${idx + 1}`}
-          value={option}
-          onChange={(e) => handleOptionChange(idx, e.target.value)}
-          style={{ display: 'block', width: '100%', padding: '0.5rem', marginBottom: '0.5rem' }}
+          placeholder="Poll Question"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
           required
+          className="input-field"
         />
-      ))}
-      <button type="button" onClick={addOption} style={{ marginBottom: '1rem', background: '#6200ea', color: 'white', padding: '0.5rem' }}>
-        Add Option
-      </button>
-      <br />
-      <button type="submit" style={{ background: '#03dac5', color: 'black', padding: '0.5rem' }}>
-        Create Poll
-      </button>
-    </form>
+
+        <div className="checkbox-field">
+          <label>
+            <input
+              type="checkbox"
+              checked={isMultiple}
+              onChange={(e) => setIsMultiple(e.target.checked)}
+            />
+            &nbsp;Allow Multiple Selections
+          </label>
+        </div>
+
+        {options.map((opt, idx) => (
+          <input
+            key={idx}
+            type="text"
+            placeholder={`Option ${idx + 1}`}
+            value={opt}
+            onChange={(e) => handleOptionChange(idx, e.target.value)}
+            required
+            className="input-field"
+          />
+        ))}
+
+        <div className="button-group">
+          <button type="button" onClick={addOption} className="add-option-button">
+            Add Option
+          </button>
+          <button type="submit" className="create-poll-button">
+            Create Poll
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 

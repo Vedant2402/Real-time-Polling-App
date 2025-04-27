@@ -27,10 +27,17 @@ function App() {
           </div>
         </div>
       </nav>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/create" element={<Create />} />
       </Routes>
+
+      {/* New Footer */}
+      <footer className="footer">
+        <p>© 2025 Vedant Kankate. All Rights Reserved.</p>
+        <a href="mailto:vedantkankate22@gmail.com" className="email-link">Email Me</a>
+      </footer>
     </div>
   );
 }
