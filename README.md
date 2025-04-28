@@ -125,8 +125,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Vedant Kankate**
 
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/vedant-kankate/)
-- GitHub: [Your GitHub](https://github.com/vedant2402)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/vedant-kankate/)
+- GitHub: [GitHub](https://github.com/vedant2402)
 - Email: vedantkankate22@gmail.com
 
 ---
