@@ -13,31 +13,34 @@ function App() {
 
   return (
     <div className={darkMode ? 'dark' : 'light'}>
-      <nav className="navbar">
-        <div className="nav-left">
-          <Link to="/">Home</Link>
-          <Link to="/create">Create Poll</Link>
-        </div>
-        <div className="nav-right">
-          <div className="toggle-switch" onClick={toggleTheme}>
-            <div className={`switch ${darkMode ? 'switch-dark' : 'switch-light'}`}>
-              {darkMode ? <FaMoon className="icon" /> : <FaSun className="icon" />}
-            </div>
-            <span className="toggle-label">{darkMode ? 'Dark' : 'Light'}</span>
+      <div className="app-wrapper">
+        <nav className="navbar">
+          <div className="nav-left">
+            <Link to="/">Home</Link>
+            <Link to="/create">Create Poll</Link>
           </div>
-        </div>
-      </nav>
+          <div className="nav-right">
+            <div className="toggle-switch" onClick={toggleTheme}>
+              <div className={`switch ${darkMode ? 'switch-dark' : 'switch-light'}`}>
+                {darkMode ? <FaMoon className="icon" /> : <FaSun className="icon" />}
+              </div>
+              <span className="toggle-label">{darkMode ? 'Dark' : 'Light'}</span>
+            </div>
+          </div>
+        </nav>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/create" element={<Create />} />
-      </Routes>
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/create" element={<Create />} />
+          </Routes>
+        </main>
 
-      {/* New Footer */}
-      <footer className="footer">
-        <p>© 2025 Vedant Kankate. All Rights Reserved.</p>
-        <a href="mailto:vedantkankate22@gmail.com" className="email-link">Email Me</a>
-      </footer>
+        <footer className="footer">
+          <p>© 2025 Vedant Kankate. All Rights Reserved.</p>
+          <a href="mailto:vedantkankate22@gmail.com" className="email-link">Email Me</a>
+        </footer>
+      </div>
     </div>
   );
 }
